@@ -30,12 +30,23 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run tests
         run: |
           pytest
+
+  build:
+    name: print_head
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Run tests
+        run: |
+          python python_scripts/create_pr.py --head_branch testing_string
         
       
 
