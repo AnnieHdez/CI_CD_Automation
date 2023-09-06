@@ -14,7 +14,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  dependencies_test:
+  check_head_branch:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -35,17 +35,9 @@ jobs:
         run: |
           pytest
 
-  print_job:
-    name: print_head
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    steps:
-       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: Run tests
+      - name: printing_head_branch
         run: |
-          python python_scripts/create_pr.py --head_branch testing_string
+          python python_scripts/create_pr.py --head_branch ${{ github.ref_name }}	
         
       
 
