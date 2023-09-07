@@ -43,4 +43,5 @@ response = requests.get(
 if response.status_code==200:
     print(json.dumps(response.json(),indent=4))
 
-print("response:", response.status_code)
+else:
+    response.raise_for_status
