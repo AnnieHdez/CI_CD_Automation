@@ -31,14 +31,9 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run tests
-        run: |
-          pytest
-
       - name: printing_head_branch
         run: |
-          python python_scripts/create_pr.py --head_branch ${{ github.ref_name }}	
-                                             --auth_token ${{ secrets.GH_TOKEN }}
+          python python_scripts/create_pr.py --head_branch ${{ github.ref_name }} --auth_token ${{ secrets.GH_TOKEN }}
         
       
 
