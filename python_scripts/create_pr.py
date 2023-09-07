@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--head_branch', type= str)
 
 args = parser.parse_args()
-AUTH_TOKEN = os.env("GH_TOKEN")
+AUTH_TOKEN = os.environ("GH_TOKEN")
 
 SOURCE_BRANCH = args.head_branch
 
