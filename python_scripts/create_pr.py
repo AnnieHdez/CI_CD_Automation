@@ -7,6 +7,8 @@ import os
 parser = argparse.ArgumentParser()
 
 # Adding Arguments
+
+parser.add_argument('--repo_slug', type= str)
 parser.add_argument('--head_branch', type= str)
 parser.add_argument('--auth_token', type= str)
 
@@ -15,10 +17,13 @@ args = parser.parse_args()
 
 #example_to_env_vars = os.environ("NAME_OF_VAR")
 
+REPO_SLUG = args.repo_slug
 SOURCE_BRANCH = args.head_branch
 AUTH_TOKEN = args.auth_token
 
-api_url = " https://api.github.com/repos/OWNER/REPO/"
+print(REPO_SLUG)
+
+api_url = f"https://api.github.com/repos/{REPO_SLUG}/"
 
 api_action = "commits"
 
