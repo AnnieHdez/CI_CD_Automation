@@ -31,7 +31,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: printing_head_branch
+      - name: Create Pull Request
         run: |
           python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }}
         

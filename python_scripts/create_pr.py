@@ -27,7 +27,9 @@ print(REPO_SLUG)
 
 api_url = f"https://api.github.com/repos/{REPO_SLUG}/"
 
-api_action = "commits"
+#api_action = "commits"
+
+api_action = "pulls"
 
 url = api_url + api_action
 
@@ -37,15 +39,25 @@ headers = {
     "Authorization": f"token {AUTH_TOKEN}"
     }
 
-response = requests.get(
+# response = requests.get(
+#     url=url,
+#     headers=headers
+# )
+
+response = requests.post(
     url=url,
-    headers=headers
+    headers=headers,
+    data={
+        "title": f"Pull request from {SOURCE_BRANCH} to {TARGET_BRANCH}",
+        "head": SOURCE_BRANCH,
+        "base": TARGET_BRANCH
+    }
 )
 
-if response.status_code==200:
-    # print(json.dumps(response.json(),indent=4))
-    print("source:",SOURCE_BRANCH)
-    print("target:",TARGET_BRANCH)
+if response.ok:
+    print(json.dumps(response.json(),indent=4))
+    # print("source:",SOURCE_BRANCH)
+    # print("target:",TARGET_BRANCH)
 
 else:
     response.raise_for_status
