@@ -44,14 +44,16 @@ headers = {
 #     headers=headers
 # )
 
-response = requests.post(
-    url=url,
-    headers=headers,
-    data={
+params = {
         "title": f"Pull request from {SOURCE_BRANCH} to {TARGET_BRANCH}",
         "head": SOURCE_BRANCH,
         "base": TARGET_BRANCH
     }
+
+response = requests.post(
+    url=url,
+    headers=headers,
+    data=json.dumps(params)
 )
 
 if response.status_code==201:
