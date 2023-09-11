@@ -65,4 +65,4 @@ if response.status_code==201:
     # print("target:",TARGET_BRANCH)
 
 else:
-    raise(response.raise_for_status)
+    raise(Exception(response.text))
