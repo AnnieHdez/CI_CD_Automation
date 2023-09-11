@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('--repo_slug', type= str)
 parser.add_argument('--head_branch', type= str)
+parser.add_argument('--base_branch', type= str)
 parser.add_argument('--auth_token', type= str)
 
 
@@ -19,6 +20,7 @@ args = parser.parse_args()
 
 REPO_SLUG = args.repo_slug
 SOURCE_BRANCH = args.head_branch
+TARGET_BRANCH = args.base_branch
 AUTH_TOKEN = args.auth_token
 
 print(REPO_SLUG)
@@ -41,7 +43,9 @@ response = requests.get(
 )
 
 if response.status_code==200:
-    print(json.dumps(response.json(),indent=4))
+    # print(json.dumps(response.json(),indent=4))
+    print("source:",SOURCE_BRANCH)
+    print("target:",TARGET_BRANCH)
 
 else:
     response.raise_for_status
