@@ -58,6 +58,8 @@ response = requests.request(
     data=json.dumps(params)
 )
 
+print(response.status_code)
+
 if response.status_code==201:
     print(json.dumps(response.json(),indent=4))
     # print("source:",SOURCE_BRANCH)
