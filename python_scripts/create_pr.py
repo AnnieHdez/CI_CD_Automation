@@ -58,7 +58,6 @@ response = requests.request(
     data=json.dumps(params)
 )
 
-print(response.status_code)
 
 if response.status_code==201:
     print(json.dumps(response.json(),indent=4))
@@ -66,4 +65,4 @@ if response.status_code==201:
     # print("target:",TARGET_BRANCH)
 
 else:
-    response.raise_for_status
+    raise(response.raise_for_status)
