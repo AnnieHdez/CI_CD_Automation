@@ -39,7 +39,8 @@ headers = {
     "Authorization": f"token {AUTH_TOKEN}"
     }
 
-# response = requests.get(
+# response = requests.request(
+#     "GET",
 #     url=url,
 #     headers=headers
 # )
@@ -50,13 +51,14 @@ params = {
         "base": TARGET_BRANCH
     }
 
-response = requests.post(
+response = requests.request(
+    "POST",
     url=url,
     headers=headers,
     data=json.dumps(params)
 )
 
-if response.status_code==201:
+if response.ok:
     print(json.dumps(response.json(),indent=4))
     # print("source:",SOURCE_BRANCH)
     # print("target:",TARGET_BRANCH)
