@@ -54,7 +54,7 @@ response = requests.post(
     }
 )
 
-if response.ok:
+if response==201:
     print(json.dumps(response.json(),indent=4))
     # print("source:",SOURCE_BRANCH)
     # print("target:",TARGET_BRANCH)
