@@ -23,7 +23,32 @@ SOURCE_BRANCH = args.head_branch
 TARGET_BRANCH = args.base_branch
 AUTH_TOKEN = args.auth_token
 
-print(REPO_SLUG)
+def createPullRequest(url):
+
+    params = {
+        "title": f"Pull request from {SOURCE_BRANCH} to {TARGET_BRANCH}",
+        "head": SOURCE_BRANCH,
+        "base": TARGET_BRANCH
+    }
+
+    response = requests.request(
+        "POST",
+        url=url,
+        headers=headers,
+        data=json.dumps(params)
+    )
+
+
+    if response.status_code==201:
+        print("PR created successfully.")
+
+        # print(json.dumps(response.json(),indent=4))
+        # print("source:",SOURCE_BRANCH)
+        # print("target:",TARGET_BRANCH)
+
+    else:
+        raise(Exception(response.text))
+
 
 api_url = f"https://api.github.com/repos/{REPO_SLUG}/"
 
@@ -49,34 +74,12 @@ response_get = requests.request(
 
 
 if response_get.status_code==200:
-    print(json.dumps(response_get.json(),indent=4))
+    jsonvar = response_get.json()
+    if len(jsonvar)==0:
+        createPullRequest(api_url+api_action)
+
+    else:   
+        print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists.")
 
 else:
     raise(Exception(response_get.text))
-
-print(len(response_get.json()))
-print(json.dumps(response_get.json(),indent=4))
-
-print(response_get.status_code)
-
-# params = {
-#         "title": f"Pull request from {SOURCE_BRANCH} to {TARGET_BRANCH}",
-#         "head": SOURCE_BRANCH,
-#         "base": TARGET_BRANCH
-#     }
-
-# response = requests.request(
-#     "POST",
-#     url=url,
-#     headers=headers,
-#     data=json.dumps(params)
-# )
-
-
-# if response.status_code==201:
-#     print(json.dumps(response.json(),indent=4))
-#     # print("source:",SOURCE_BRANCH)
-#     # print("target:",TARGET_BRANCH)
-
-# else:
-#     raise(Exception(response.text))
