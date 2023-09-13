@@ -55,6 +55,7 @@ else:
     raise(Exception(response_get.text))
 
 print(len(response_get.json()))
+print(json.dumps(response_get.json(),indent=4))
 
 
 # params = {
