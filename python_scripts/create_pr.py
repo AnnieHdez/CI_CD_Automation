@@ -57,6 +57,7 @@ else:
 print(len(response_get.json()))
 print(json.dumps(response_get.json(),indent=4))
 
+print(response_get.status_code)
 
 # params = {
 #         "title": f"Pull request from {SOURCE_BRANCH} to {TARGET_BRANCH}",
