@@ -60,7 +60,6 @@ query = f"?q=is:pr+state:open+head:{SOURCE_BRANCH}+base:{TARGET_BRANCH}"
 
 url = api_url + api_action + query
 
-
 headers = {
     "Accept": "application/vnd.github+json",
     "Authorization": f"token {AUTH_TOKEN}"
