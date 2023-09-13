@@ -31,7 +31,7 @@ api_url = f"https://api.github.com/repos/{REPO_SLUG}/"
 
 api_action = "pulls"
 
-query = f"?q=is:open+head:{SOURCE_BRANCH}+base:{TARGET_BRANCH}"
+query = f"?q=is:pr+state:open+head:{SOURCE_BRANCH}+base:{TARGET_BRANCH}"
 
 url = api_url + api_action + query
 
@@ -53,6 +53,8 @@ if response_get.status_code==200:
 
 else:
     raise(Exception(response_get.text))
+
+print(len(response_get.json()))
 
 
 # params = {
