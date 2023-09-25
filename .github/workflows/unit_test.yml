@@ -60,9 +60,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create Pull Request
         run: |
-          output=$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }})
           echo "PR_NUMBER is: $PR_NUMBER"
-          echo "PR_NUMBER=$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }}) >> $GITHUB_OUTPUT
+          echo "PR_NUMBER=$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }})" >> $GITHUB_OUTPUT
     outputs:
           PR_NUMBER: "$PR_NUMBER"
       
