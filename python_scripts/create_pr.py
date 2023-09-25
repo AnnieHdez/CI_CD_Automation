@@ -42,6 +42,10 @@ def createPullRequest(url):
     if response.status_code==201:
         print("PR created successfully.")
 
+        print(response.json()["number"])
+
+        pr_number = response.json()["number"]
+
         # print(json.dumps(response.json(),indent=4))
         # print("source:",SOURCE_BRANCH)
         # print("target:",TARGET_BRANCH)
@@ -78,7 +82,8 @@ if response_get.status_code==200:
         createPullRequest(api_url+api_action)
 
     else:   
-        print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists.")
+        pr_number = response_get.json()[0]["number"]
+        print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists with #{pr_number}.")
 
 else:
     raise(Exception(response_get.text))
