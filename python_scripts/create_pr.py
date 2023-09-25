@@ -40,7 +40,7 @@ def createPullRequest(url):
 
 
     if response.status_code==201:
-        print("PR created successfully.")
+        #print("PR created successfully.")
 
         pr_number = response.json()["number"]
 
@@ -80,13 +80,13 @@ if response_get.status_code==200:
         createPullRequest(api_url+api_action)
 
     else:   
-        pr_number = response_get.json()[0]["number"]
-        print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists with #{pr_number}.")
-
-    env_file = os.getenv('GITHUB_ENV') # Get the path of the runner file
-    # write to the file
-    with open(env_file, "a") as env_file:
-        env_file.write(f"PR_NUMBER={str(pr_number)}")
+        pr_number = str(response_get.json()[0]["number"])
+        #print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists with #{pr_number}.")
+        print(pr_number)
+    # env_file = os.getenv('GITHUB_ENV') # Get the path of the runner file
+    # # write to the file
+    # with open(env_file, "a") as env_file:
+    #     env_file.write(f"PR_NUMBER={str(pr_number)}")
 else:
     raise(Exception(response_get.text))
 
