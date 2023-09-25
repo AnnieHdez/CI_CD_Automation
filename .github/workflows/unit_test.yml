@@ -61,7 +61,8 @@ jobs:
       - name: Create Pull Request
         run: |
           python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }}
-        
+    outputs:
+          PR_NUMBER: "$PR_NUMBER"
       
   
   print_pr_number:
@@ -74,5 +75,5 @@ jobs:
 
       - name: "Print PR Number"
         run: |
-          echo "PR Number: $PR_NUMBER"
+          echo "PR Number: ${{ needs.create_pull_request.outputs.PR_NUMBER }}"
 
