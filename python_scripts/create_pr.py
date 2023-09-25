@@ -83,7 +83,7 @@ if response_get.status_code==200:
         pr_number = response_get.json()[0]["number"]
         print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists with #{pr_number}.")
 
-    os.environ["PR_NUMBER"]=pr_number
+    os.environ["PR_NUMBER"]=str(pr_number)
 
 else:
     raise(Exception(response_get.text))
