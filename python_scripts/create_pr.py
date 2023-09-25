@@ -83,8 +83,10 @@ if response_get.status_code==200:
         pr_number = response_get.json()[0]["number"]
         print(f"PR from {SOURCE_BRANCH} to {TARGET_BRANCH} already exists with #{pr_number}.")
 
-    os.environ["PR_NUMBER"]=str(pr_number)
-
+    env_file = os.getenv('GITHUB_ENV') # Get the path of the runner file
+    # write to the file
+    with open(env_file, "a") as env_file:
+        env_file.write(f"PR_NUMBER={str(pr_number)}")
 else:
     raise(Exception(response_get.text))
 
