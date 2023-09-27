@@ -59,8 +59,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       - name: Create Pull Request
+        id: create_pr
         run: |
-          echo "PR_NUMBER=$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }})" >> $GITHUB_OUTPUT
+          echo "PR_NUMBER=$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }})" >> $env:GITHUB_OUTPUT
       
   
   print_pr_number:
@@ -73,5 +74,5 @@ jobs:
 
       - name: "Print PR Number"
         run: |
-          echo ${{ github.job.create_pull_request.outputs.PR_NUMBER }}
-
+         # echo ${{ github.job.create_pull_request.outputs.PR_NUMBER }}
+         echo ${{ github.job.create_pull_request.steps.create_pr.outputs.PR_NUMBER }}
