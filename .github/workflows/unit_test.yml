@@ -74,5 +74,5 @@ jobs:
 
       - name: "Print PR Number"
         run: |
-          echo "${{ needs.create_pull_request.outputs.PR_NUMBER }}"
+          echo ${{ github.job.create_pull_request.outputs.PR_NUMBER }}
 
