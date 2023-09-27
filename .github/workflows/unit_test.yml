@@ -61,7 +61,7 @@ jobs:
       - name: Create Pull Request
         id: create_pr
         run: |
-          echo "PR_NUMBER:$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }})" >> $GITHUB_OUTPUT
+          echo "PR_NUMBER=$(python python_scripts/create_pr.py --repo_slug ${{ github.repository }} --head_branch ${{ github.ref_name }} --base_branch dev --auth_token ${{ secrets.GH_TOKEN }})" >> $GITHUB_OUTPUT
           echo $PR_NUMBER
       
   
