@@ -76,5 +76,5 @@ jobs:
 
       - name: "Print PR Number"
         run: |
-          echo "PR Number: ${{ needs.create_pull_request.outputs.PR_NUMBER }}"
+          echo ${{ needs.create_pull_request.outputs.PR_NUMBER }}
 
