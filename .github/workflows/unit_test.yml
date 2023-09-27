@@ -75,7 +75,7 @@ jobs:
         - env:
             PR_NUMBER: ${{needs.create_pull_request.outputs.pr_number}}
           run: |
-            python python_scripts/merge_pr.py --repo_slug ${{ github.repository }} --pr_numb $PR_NUMBER --auth_token ${{ secrets.GH_TOKEN }})
+            python python_scripts/merge_pr.py --repo_slug ${{ github.repository }} --pr_numb $PR_NUMBER --auth_token ${{ secrets.GH_TOKEN }}
 
 # reference: https://docs.github.com/en/actions/using-jobs/defining-outputs-for-jobs
 # #echo ${{ github.job.create_pull_request.outputs.PR_NUMBER }}
