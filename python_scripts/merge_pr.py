@@ -16,7 +16,7 @@ parser.add_argument('--auth_token', type= str)
 args = parser.parse_args()
 
 REPO_SLUG = args.repo_slug
-PR_NUMB = args.pr_number
+PR_NUMB = args.pr_numb
 AUTH_TOKEN = args.auth_token
 
 headers = {
