@@ -46,8 +46,6 @@ def mergePullRequest(url):
         # pr_number = response.json()["number"]
 
         # print(json.dumps(response.json(),indent=4))
-        # print("source:",SOURCE_BRANCH)
-        # print("target:",TARGET_BRANCH)
 
     else:
         raise(Exception(response.text))
